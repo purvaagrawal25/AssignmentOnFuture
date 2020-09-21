@@ -1,0 +1,126 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: Demo</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">&lt;empty package name&gt;</a> ]
+</div>
+
+<h1>Coverage Summary for Class: Demo (&lt;empty package name&gt;)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+  <tr>
+    <td class="name">Demo$</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 13)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 13)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;
+<i>2</i>&nbsp;import java.io.File
+<i>3</i>&nbsp;
+<i>4</i>&nbsp;/*import org.apache.log4j.Logger*/
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;import scala.annotation.tailrec
+<i>7</i>&nbsp;import scala.concurrent.ExecutionContext.Implicits.global
+<i>8</i>&nbsp;import scala.concurrent.Future
+<i>9</i>&nbsp;
+<b class="nc"><i>10</i>&nbsp;object Demo extends App {</b>
+<i>11</i>&nbsp; /* val logger: Logger = Logger.getLogger(this.getClass)*/
+<i>12</i>&nbsp;
+<b class="nc"><i>13</i>&nbsp;  def listOfFiles(path: String): Future[List[File]] = Future {</b>
+<b class="nc"><i>14</i>&nbsp;    val file = new File(path)</b>
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;    @tailrec
+<b class="nc"><i>17</i>&nbsp;    def listOfFiles(files: List[File], result: List[File]): List[File] = files match {</b>
+<b class="nc"><i>18</i>&nbsp;      case Nil =&gt; result</b>
+<b class="nc"><i>19</i>&nbsp;      case head :: tail if head.isDirectory =&gt;</b>
+<b class="nc"><i>20</i>&nbsp;        listOfFiles(Option(head.listFiles).map(_.toList ::: tail).getOrElse(tail), result)</b>
+<b class="nc"><i>21</i>&nbsp;      case head :: tail if head.isFile =&gt;</b>
+<b class="nc"><i>22</i>&nbsp;        listOfFiles(tail, head :: result)</b>
+<i>23</i>&nbsp;    }
+<i>24</i>&nbsp;
+<b class="nc"><i>25</i>&nbsp;    listOfFiles(List(file), Nil)</b>
+<i>26</i>&nbsp;  }
+<i>27</i>&nbsp;
+<i>28</i>&nbsp;  def folderPath(){
+<i>29</i>&nbsp;
+<b class="nc"><i>30</i>&nbsp;    val files = listOfFiles(&quot;C:\\Users\\POORVA\\Desktop\\Folder1&quot;)</b>
+<b class="nc"><i>31</i>&nbsp;    Thread.sleep(2000)</b>
+<i>32</i>&nbsp;    //logger.info(s&quot; ${listOfFiles(&quot;C:\\Users\\POORVA\\Desktop\\Folder1&quot;)}&quot;)
+<i>33</i>&nbsp;
+<b class="nc"><i>34</i>&nbsp;    println(files)</b>
+<i>35</i>&nbsp;  }
+<i>36</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-09-21 18:12</div>
+</div>
+</body>
+</html>
